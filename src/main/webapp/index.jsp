@@ -1,17 +1,10 @@
-
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>权限信息管理系统</title>
-    <link rel="stylesheet" type="text/css" href="static/plugins/easyui/uimaker/easyui.css">
-    <link rel="stylesheet" type="text/css" href="static/plugins/easyui/uimaker/icon.css">
-    <script type="text/javascript" src="static/plugins/easyui/jquery.min.js"></script>
-    <script type="text/javascript" src="static/plugins/easyui/jquery.easyui.min.js"></script>
-    <script type="text/javascript" src="static/plugins/easyui/easyui-lang-zh_CN.js"></script>
-    <script type="text/javascript" src="static/js/index.js"></script>
-
+    <title>权限管理系统</title>
+    <%@include file="/static/common/common.jsp"%>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/static/js/index.js"></script>
 </head>
-
 <body class="easyui-layout">
 <div data-options="region:'north'" style="height:100px; background: #ec4e00; padding: 20px 20px">
     <img src="static/images/main_logo.png" alt="">
@@ -34,5 +27,8 @@
     <div id="tabs" style="overflow: hidden" >
     </div>
 </div>
+<script>
+
+</script>
 </body>
 </html>

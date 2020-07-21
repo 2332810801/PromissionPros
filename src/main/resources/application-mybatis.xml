@@ -40,13 +40,13 @@
         <!-- 核心配置文件的位置 -->
         <property name="configLocation" value="classpath:sqlMapConfig.xml"/>
         <!--配置mapper映射文件的路径-->
-       <!-- <property name="mapperLocations" value="classpath:com.itlike.mapper/*Mapper.xml"/>-->
+        <property name="mapperLocations" value="classpath*:com/dj/mapper/*mapper.xml"/>
     </bean>
 
- <!--   &lt;!&ndash; 配置Mapper接口扫描 &ndash;&gt;
+    <!-- 配置Mapper接口扫描 -->
     <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
-        &lt;!&ndash; 配置Mapper扫描包 &ndash;&gt;
-        <property name="basePackage" value="com.itlike.mapper" />
-    </bean>-->
+        <!-- 配置Mapper扫描包 -->
+        <property name="basePackage" value="com.dj.mapper" />
+    </bean>
 
 </beans>

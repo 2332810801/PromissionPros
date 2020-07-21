@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.dj.mapper.roleMapper" >
+  <resultMap id="BaseResultMap" type="com.dj.domain.role" >
+    <id column="rid" property="rid" jdbcType="BIGINT" />
+    <result column="rnum" property="rnum" jdbcType="VARCHAR" />
+    <result column="rname" property="rname" jdbcType="VARCHAR" />
+  </resultMap>
+    <insert id="saveRole" parameterType="com.dj.domain.role" useGeneratedKeys="true" keyProperty="rid">
+     insert into role(rnum,rname) values (#{rnum},#{rname})
+    </insert>
+  <insert id="saveRoleAndPermissRel">
+    insert into role_permission_rel(rid,pid)values(#{rid},#{pid})
+  </insert>
+  <update id="updateRole">
+    update role set rnum=#{rnum},rname=#{rname} where rid=#{rid}
+  </update>
+  <delete id="deletePermissionRel">
+    delete from role_permission_rel where rid=#{rid}
+  </delete>
+  <delete id="deleteRole">
+    delete from role where rid=#{rid}
+  </delete>
+  <select id="getRoles" resultType="com.dj.domain.role">
+    select * from role
+  </select>
+</mapper>
