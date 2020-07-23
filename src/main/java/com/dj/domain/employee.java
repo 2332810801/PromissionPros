@@ -8,31 +8,65 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
+
 @Getter@Setter@ToString
 public class employee implements Serializable {
     private Long id;
-
+    /**
+     * 用户名
+     */
     private String username;
-
+    /**
+     * 密码
+     */
     private String password;
-
+    /**
+     * 盐值
+     */
     private String realname;
-
+    /**
+     * 电话号码
+     */
     private String tel;
-
+    /**
+     * 邮箱
+     */
     private String email;
+    /**
+     * 入职日期
+     */
     @JsonFormat(pattern ="yyyy-MM-dd",timezone = "GMT+8")
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date inputtime;
-
+    /**
+     * 离职状态
+     */
     private Boolean state;
-
+    /**
+     * 是否管理员
+     */
     private Boolean admin;
-
+    /**
+     * 部门信息
+     */
     private department department;
+    /**
+     * 角色信息
+     */
+    private List<role> roles=new ArrayList<>();
 
     private static final long serialVersionUID = 1L;
+
+    public List<role> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(List<role> roles) {
+        this.roles = roles;
+    }
 
     public Long getId() {
         return id;

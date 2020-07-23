@@ -5,9 +5,9 @@ import lombok.Setter;
 
 @Getter@Setter
 public class QueryVo {
-    private int page;
-    private int rows;
-    private String keyword;
+    private int page;//当前页
+    private int rows;//页码
+    private String keyword;//搜索关键字
 
     @Override
     public String toString() {

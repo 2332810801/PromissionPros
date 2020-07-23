@@ -52,4 +52,14 @@ public class RoleServiceImpl implements RoleService {
         mapper.deletePermissionRel(rid);
         mapper.deleteRole(rid);
     }
+
+    @Override
+    public List<role> roleList() {
+        return mapper.roleList();
+    }
+
+    @Override
+    public List<Long> getRoleById(Long id) {
+        return mapper.getRoleById(id);
+    }
 }

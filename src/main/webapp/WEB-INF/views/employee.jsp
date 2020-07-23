@@ -52,11 +52,15 @@
         </tr>
         <tr>
             <td>部门:</td>
-            <td><input id="department" name="department.id" placeholder="请选择部门"></input></td>
+            <td><input id="department" name="department.id" placeholder="请选择部门"/></td>
         </tr>
         <tr>
             <td>是否管理员:</td>
-            <td><input placeholder="是否为管理员" name="admin" id="state"></input></td>
+            <td><input placeholder="是否为管理员" name="admin" id="state"/></td>
+        </tr>
+        <tr>
+            <td>角色列表:</td>
+            <td><input id="role" name="role.rid" placeholder="请选择角色"/></td>
         </tr>
     </table>
     </form>

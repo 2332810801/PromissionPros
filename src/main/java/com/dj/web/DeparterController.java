@@ -13,6 +13,7 @@ import java.util.List;
 public class DeparterController {
     @Autowired
     DepartmentService service;
+    /*查询部门*/
     @RequestMapping("/depaterList")
     @ResponseBody
     public List<department> depaterList(){

@@ -16,9 +16,12 @@
     <result property="name" column="name"></result>
     </association>
   </resultMap>
-  <insert id="saveEmployee" parameterType="com.dj.domain.employee">
+  <insert id="saveEmployee" parameterType="com.dj.domain.employee" useGeneratedKeys="true" keyProperty="id">
         insert into employee(username,password,tel,email,inputtime,admin,state,dep_id)values (#{username},#{password},#{tel},#{email},#{inputtime},#{admin},#{state},#{department.id})
   </insert>
+    <insert id="saveEmployeAndrole">
+        insert into employee_role_rel(eid,rid)values(#{id},#{rid})
+    </insert>
     <update id="updateEmployee" parameterType="com.dj.domain.employee">
       update employee set username=#{username},
                           inputtime=#{inputtime},
@@ -30,6 +33,9 @@
     <update id="updateState" parameterType="integer">
         update employee set state=false where id=#{id}
     </update>
+    <delete id="deleteRoleRel">
+        delete from employee_role_rel where eid=#{id}
+    </delete>
 
     <sql id="where_sql">
         <where>
@@ -57,4 +63,7 @@ ON e.dep_id=d.id
 <include refid="where_sql"></include>
 order by e.id
   </select>
+    <select id="getEmployeeWithUsername" resultType="com.dj.domain.employee">
+        select * from employee where username=#{username}
+    </select>
 </mapper>

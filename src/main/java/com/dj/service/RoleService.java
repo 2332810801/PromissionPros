@@ -15,4 +15,8 @@ public interface RoleService {
     void updateRole(role role);
     /*删除角色*/
     void deleteRole(Long rid);
+    /*查询所有角色*/
+    List<role> roleList();
+    /*根据员工id查询角色*/
+    List<Long> getRoleById(Long id);
 }

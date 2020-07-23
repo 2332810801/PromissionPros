@@ -10,8 +10,8 @@ import java.util.List;
 @Getter
 @ToString
 public class PageListRes {
-    private Long total;
-    private List<?> rows=new ArrayList<>();
+    private Long total;//总行数
+    private List<?> rows=new ArrayList<>();//返回信息
 
     public PageListRes() {
     }

@@ -20,6 +20,7 @@ public class permissionController {
         return service.permissionList();
     }
 
+    /**根据id查询权限*/
     @RequestMapping("/getPermissionById")
     @ResponseBody
     public List<permission> getPermissionById(Long rid){

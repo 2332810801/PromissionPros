@@ -3,6 +3,7 @@ package com.dj.service.impl;
 import com.dj.domain.PageListRes;
 import com.dj.domain.QueryVo;
 import com.dj.domain.employee;
+import com.dj.domain.role;
 import com.dj.mapper.employeeMapper;
 import com.dj.service.employeeService;
 import com.github.pagehelper.Page;
@@ -30,15 +31,31 @@ public class employeeServiceImpl implements employeeService {
     public void saveEmployee(employee employee) {
         employee.setState(true);
         mapper.saveEmployee(employee);
+        /*保存角色*/
+        System.out.println(employee);
+        for (role role : employee.getRoles()) {
+            mapper.saveEmployeAndrole(employee.getId(),role.getRid());
+        }
     }
 
     @Override
     public void updateEmployee(employee employee) {
+        /*打破角色之间的关系*/
+        mapper.deleteRoleRel(employee.getId());
         mapper.updateEmployee(employee);
+        /*重新建立关系*/
+        for (role role : employee.getRoles()) {
+            mapper.saveEmployeAndrole(employee.getId(),role.getRid());
+        }
     }
 
     @Override
     public void updateState(Integer id) {
         mapper.updateState(id);
+    }
+
+    @Override
+    public employee getEmployeeWithUsername(String username) {
+        return mapper.getEmployeeWithUsername(username);
     }
 }

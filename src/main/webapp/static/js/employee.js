@@ -68,6 +68,14 @@ $(function () {
 
              $("#employeeForm").form("submit",{
                url:url,
+               onSubmit:function(param){
+                 /*获取选中的角色*/
+                 var values=$("#role").combobox("getValues");
+                 for (var i = 0; i < values.length; i++) {
+                        var rid=values[i];
+                        param["roles["+i+"].rid"]=rid;
+                 }
+               },
                success:function (data) {
                  data=$.parseJSON(data)
                  if(data.success){
@@ -119,6 +127,12 @@ $(function () {
       rowdata["department.id"]=rowdata["department"].id;
       /*回显管理员*/
       rowdata["admin"]=rowdata["admin"]+"";
+      /*回显角色*/
+      /*根据当前用户id，查出对应角色*/
+      $.get("/getRoleById?id="+rowdata.id,function (data) {
+        /*设置下拉列表回显*/
+        $("#role").combobox("setValues",data);
+      })
       $("#employeeForm").form("load",rowdata);
   });
 
@@ -202,4 +216,27 @@ $(function () {
       $("#dg").datagrid("load",{keyword:keyword});
 
   })
+
+  /*选择角色的下拉列表*/
+  $("#role").combobox({
+    width:150,
+    panelHeight:'auto',
+    editable:false,
+    textField:'rname',
+    valueField:'rid',
+    multiple:true,
+    url:"roleList",
+    onLoadSuccess:function () {
+      /*数据加载完后的回调*/
+      $("#role").each(function(i){
+        var span = $(this).siblings("span")[i];
+        var targetInput = $(span).find("input:first");
+        if(targetInput){
+          $(targetInput).attr("placeholder", $(this).attr("placeholder"));
+        }
+      });
+    },
+  })
+
+
 });

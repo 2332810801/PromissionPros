@@ -10,6 +10,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.util.List;
+
 @Controller
 public class RoleController {
     @RequestMapping("/role")
@@ -26,6 +28,7 @@ public class RoleController {
        return service.getRoles(vo);
     }
 
+    /*添加角色*/
     @RequestMapping("/saveRole")
     @ResponseBody
     public AjaxRes saveRole(role role){
@@ -36,6 +39,7 @@ public class RoleController {
             return new AjaxRes(false,"添加失败");
         }
     }
+    /*修改角色*/
     @RequestMapping("/updateRole")
     @ResponseBody
     public AjaxRes updateRole(role role){
@@ -47,6 +51,7 @@ public class RoleController {
         }
     }
 
+    /*删除角色*/
     @RequestMapping("/deleteRole")
     @ResponseBody
     public AjaxRes deleteRole(Long rid){
@@ -56,5 +61,19 @@ public class RoleController {
         }catch (Exception e){
             return new AjaxRes(false,"删除失败");
         }
+    }
+    /*查询角色*/
+    @RequestMapping("/roleList")
+    @ResponseBody
+    public List<role> roleList(){
+        return service.roleList();
+    }
+
+    /*根据员工id查询角色*/
+    @RequestMapping("/getRoleById")
+    @ResponseBody
+    public List<Long> getRoleById(Long id){
+        return service.getRoleById(id);
+
     }
 }

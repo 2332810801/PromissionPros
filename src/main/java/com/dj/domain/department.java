@@ -14,11 +14,18 @@ public class department implements Serializable {
      * 部门编号
      */
     private String sn;
-
+    /**
+     * 上级id
+     */
     private Long managerId;
-
+    /**
+     * 父级id
+     */
     private Long parentId;
 
+    /**
+     * 状态
+     */
     private Boolean state;
 
     private static final long serialVersionUID = 1L;

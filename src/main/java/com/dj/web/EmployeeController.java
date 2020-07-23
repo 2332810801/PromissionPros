@@ -37,13 +37,15 @@ public class EmployeeController {
     @RequestMapping("/saveEmployee")
     @ResponseBody
     public AjaxRes saveEmployee(employee employee){
-       try {
+        try {
            service.saveEmployee(employee);
           return new AjaxRes(true,"保存成功");
        }catch (Exception e){
+            e.printStackTrace();
            return new AjaxRes(false,"保存失败");
        }
     }
+    /*修改员工*/
     @RequestMapping("/updateEmployee")
     @ResponseBody
     public AjaxRes updateEmployee(employee employee){
@@ -54,6 +56,7 @@ public class EmployeeController {
             return new AjaxRes(false,"更新失败");
         }
     }
+    /*修改状态*/
     @RequestMapping("/updateState")
     @ResponseBody
     public AjaxRes updateState(Integer id){
@@ -64,7 +67,8 @@ public class EmployeeController {
             e.printStackTrace();
             return new AjaxRes(false,"离职失败");
         }
-
     }
+
+
 
 }
