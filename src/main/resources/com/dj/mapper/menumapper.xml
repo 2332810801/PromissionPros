@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dj.mapper.menuMapper">
+    <resultMap id="BaseResultMap" type="com.dj.domain.menu">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="text" jdbcType="VARCHAR" property="text" />
+    <result column="url" jdbcType="VARCHAR" property="url" />
+        <association property="parent" javaType="com.dj.domain.menu" columnPrefix="m_">
+            <result column="id"  property="text" />
+            <result column="text"  property="text" />
+            <result column="url"  property="url" />
+        </association>
+        <association property="permission" javaType="com.dj.domain.permission">
+            <result column="pid"  property="pid" />
+            <result column="pname"  property="pname" />
+            <result column="presources"  property="presources" />
+        </association>
+     <collection property="children" ofType="com.dj.domain.menu" select="listchildMenu" column="id"> </collection>
+    </resultMap>
+
+    <!--获取树形菜单
+   分步查询
+   查询父菜单id
+   根据父菜单id查询子菜单
+   -->
+    <select id="getTreeData" resultMap="BaseResultMap">
+       select * from menu as m
+        left join permission as p
+        on m.permission_id=p.pid where parent_id is null
+    </select>
+
+    <select id="listchildMenu" resultMap="BaseResultMap">
+        select * from menu as m
+        left join permission as p
+        on m.permission_id=p.pid where parent_id =#{id}
+    </select>
+
+
+    <insert id="saveMenu" parameterType="com.dj.domain.menu">
+       insert into menu(text,url,parent_id)values(#{text},#{url},#{parent.id})
+    </insert>
+    <update id="updateMenu">
+        update menu set text=#{text},url=#{url},parent_id=#{parent_id} where id=#{id}
+    </update>
+    <update id="updatemenurel">
+        update menu set parent_id=null where parent_id=#{id}
+    </update>
+    <delete id="deletemenu">
+        delete from menu where id=#{id}
+    </delete>
+    <select id="menuList" resultMap="BaseResultMap">
+        select
+        m.id,
+        m.text,
+        m.url,
+        me.id as m_id,
+        me.text as m_text,
+        me.url as m_url
+        from menu m
+        left join menu me
+        on m.parent_id=me.id
+    </select>
+    <select id="selectParenyId" resultType="java.lang.Long">
+        select parent_id from menu where id=#{id}
+    </select>
+
+</mapper>

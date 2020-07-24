@@ -21,4 +21,8 @@ public interface employeeMapper {
     void deleteRoleRel(Long id);
     /*根据用户名查询用户*/
     employee getEmployeeWithUsername(String username);
+
+    List<String> getroleById(Long id);
+
+    List<String> getpermission(Long id);
 }

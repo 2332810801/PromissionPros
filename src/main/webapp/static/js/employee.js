@@ -186,7 +186,7 @@ $(function () {
     /*获取当前行*/
     var rowdata = $("#dg").datagrid("getSelected");
     if(!rowdata){
-      $.messager.alert("提示","请选择一行数据进行编辑");
+      $.messager.alert("提示","请选择一行数据进行离职");
       return;
     }
     /*提醒用户是否进行离职操作*/

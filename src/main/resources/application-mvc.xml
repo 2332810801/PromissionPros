@@ -21,4 +21,11 @@
     </bean>
 
 
+    <!--配置拦截器-->
+    <mvc:interceptors>
+        <mvc:interceptor>
+            <mvc:mapping path="/*"/>
+            <bean class="com.dj.interceptor.RequestInterceptor"></bean>
+        </mvc:interceptor>
+    </mvc:interceptors>
 </beans>

@@ -17,4 +17,8 @@ public interface employeeService {
     void updateState(Integer id);
 
     employee getEmployeeWithUsername(String username);
+
+    List<String> getroleById(Long id);
+
+    List<String> getpermission(Long id);
 }

@@ -8,6 +8,7 @@ import com.dj.mapper.employeeMapper;
 import com.dj.service.employeeService;
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
+import org.apache.shiro.crypto.hash.Md5Hash;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -29,6 +30,9 @@ public class employeeServiceImpl implements employeeService {
 
     @Override
     public void saveEmployee(employee employee) {
+
+        Md5Hash md5Hash = new Md5Hash(employee.getPassword(),"Joker-DJ",2);
+        employee.setPassword(md5Hash.toString());
         employee.setState(true);
         mapper.saveEmployee(employee);
         /*保存角色*/
@@ -57,5 +61,15 @@ public class employeeServiceImpl implements employeeService {
     @Override
     public employee getEmployeeWithUsername(String username) {
         return mapper.getEmployeeWithUsername(username);
+    }
+
+    @Override
+    public List<String> getroleById(Long id) {
+        return mapper.getroleById(id);
+    }
+
+    @Override
+    public List<String> getpermission(Long id) {
+        return mapper.getpermission(id);
     }
 }
